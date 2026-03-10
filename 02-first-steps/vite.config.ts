@@ -1,5 +1,6 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
+// import { defineConfig } from 'vite';
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react-swc";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -8,4 +9,8 @@ export default defineConfig({
     open: true, // Open the browser automatically on startup
   },
   plugins: [react()],
+  test: {
+    globals: true,
+    environment: "jsdom",
+  },
 });

@@ -51,3 +51,16 @@
   - Módulos de css
   - Impresiones de variables
   - Props
+- Seccion 05
+  - Vitest
+  - Vitest UI
+  - Índice de cobertura
+  - Describe y Test
+  - Espías
+  - Mock
+  - Mock sobre componentes
+  - Depuración en consola
+  - Snapshots
+  - Esperar argumentos específicos en funciones
+  - Integración con Testing Library
+  - Y más
