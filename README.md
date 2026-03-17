@@ -64,3 +64,12 @@
   - Esperar argumentos específicos en funciones
   - Integración con Testing Library
   - Y más
+- Seccion 06
+  - Peticiones HTTP
+  - Debounce
+  - Manejo de estado
+  - Comunicación entre componentes
+  - useEffect
+  - Variables de entorno
+  - Fuentes personalizadas
+  - Entre otras cosas.

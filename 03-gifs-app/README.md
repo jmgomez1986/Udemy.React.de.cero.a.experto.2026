@@ -1,0 +1,9 @@
+- Seccion 06
+  - Peticiones HTTP
+  - Debounce
+  - Manejo de estado
+  - Comunicación entre componentes
+  - useEffect
+  - Variables de entorno
+  - Fuentes personalizadas
+  - Entre otras cosas.
