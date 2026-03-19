@@ -73,3 +73,9 @@
   - Variables de entorno
   - Fuentes personalizadas
   - Entre otras cosas.
+- Seccion 07
+  - Custom Hooks - Hooks personalizados
+  - DevTools de React
+  - useRef - Hook propio de React
+  - Generar versión de producción
+  - Separación de responsabilidades

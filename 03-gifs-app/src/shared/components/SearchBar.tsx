@@ -19,7 +19,6 @@ export const SearchBar = ({
     }, 700);
 
     return () => {
-      console.log('Cleaning up search term');
       clearTimeout(timeoutID);
     };
   }, [query, onSearch]);
