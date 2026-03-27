@@ -5,7 +5,7 @@ import { GifList } from './gifs/components/GifList';
 import { useGifs } from './gifs/hooks/useGifs';
 
 export const GifsApp = () => {
-  const { gifs, previousSearches, handlePreviousSearchClick, handleSearch } =
+  const { gifs, previousSearches, handlePreviousSearchClicked, handleSearch } =
     useGifs();
 
   return (
@@ -28,7 +28,7 @@ export const GifsApp = () => {
       <PreviousSearches
         title="Búsquedas previas"
         previousSearches={previousSearches}
-        onLabelClicked={handlePreviousSearchClick}
+        onLabelClicked={handlePreviousSearchClicked}
       />
 
       {/* Gifs */}

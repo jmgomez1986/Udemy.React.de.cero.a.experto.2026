@@ -10,7 +10,7 @@ export const useGifs = () => {
 
   const gifsCache = useRef<Record<string, Gif[]>>({});
 
-  const handlePreviousSearchClick = async (search: string) => {
+  const handlePreviousSearchClicked = async (search: string) => {
     // if (gifsCache[search]) {
     //   setGifs(gifsCache[search]);
     //   return;
@@ -23,6 +23,7 @@ export const useGifs = () => {
 
     const gifs = await getGifsByQuery(search);
     setGifs(gifs);
+    gifsCache.current[search] = gifs;
   };
 
   const handleSearch = async (query: string = '') => {
@@ -32,20 +33,21 @@ export const useGifs = () => {
 
     if (previousSearches.includes(query)) return;
 
-    setPreviousSearches([query, ...previousSearches].splice(0, 8));
+    setPreviousSearches((prevSearches) =>
+      [query, ...prevSearches].splice(0, 8),
+    );
 
     const gifs = await getGifsByQuery(query);
     setGifs(gifs);
 
     // gifsCache.[query] = gifs;
-
     gifsCache.current[query] = gifs;
   };
 
   return {
     gifs,
     previousSearches,
-    handlePreviousSearchClick,
+    handlePreviousSearchClicked,
     handleSearch,
   };
 };

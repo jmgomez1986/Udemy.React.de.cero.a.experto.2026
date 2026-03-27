@@ -13,3 +13,13 @@
   - useRef - Hook propio de React
   - Generar versión de producción
   - Separación de responsabilidades
+- Seccion 08
+  - Pruebas sobre hooks
+  - Pruebas sobre custom hooks
+  - Pruebas con tareas asíncronas
+  - Pruebas con tareas que involucran timeouts
+  - Pruebas sobre axios
+  - Integrar testing en el proceso de construcción
+  - Espías
+  - Sobre escribir funciones para el testing
+  - Manejo de excepciones

@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GifItem > should render the app correctly 1`] = `
+<div>
+  <div
+    class="gif-card"
+  >
+    <img
+      alt="Test"
+      src="ww.a.com"
+    />
+    <h3>
+      Test
+    </h3>
+    <p>
+      1
+      x
+      1
+       (1.5mb)
+    </p>
+  </div>
+</div>
+`;
