@@ -89,3 +89,13 @@
   - Espías
   - Sobre escribir funciones para el testing
   - Manejo de excepciones
+- Seccion 09 - Reforzar conocimiento de hooks tradicionales y especializar en "custom hooks"
+  - useState
+  - useRef
+  - useEffect
+  - Custom Hooks como:
+    - useCounter
+    - usePokemon
+    - useTrafficLight
+    - Conectar múltiples custom hooks entre sí
+  - Más..
