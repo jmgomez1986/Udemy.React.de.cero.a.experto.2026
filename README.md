@@ -99,3 +99,11 @@
     - useTrafficLight
     - Conectar múltiples custom hooks entre sí
   - Más..
+- Seccion 10 - uso de useReducer
+  - Patron reducer
+  - useReducer hook
+  - Validadores de esquemas - Zod
+  - Efectos sobre estados
+  - LocalStorage y SessionStorage
+  - Condiciones de los reducers
+  - Tareas y ejercicios adicionales
