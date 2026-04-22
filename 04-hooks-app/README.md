@@ -16,3 +16,13 @@
   - LocalStorage y SessionStorage
   - Condiciones de los reducers
   - Tareas y ejercicios adicionales
+- Seccion 11 - Memorización y optimizaciones
+  - Memorización
+  - Hooks de memorización como:
+    - useMemo
+    - useCallback
+  - useOptimistic para hacer actualizaciones en pantalla rápidas
+  - useTransaction para evitar bloqueos de UI
+  - Simular fallos en posteos optimistas para hacer reversiones
+  - Nueva api Use
+  - Componente Suspense
