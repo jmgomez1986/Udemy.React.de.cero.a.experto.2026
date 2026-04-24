@@ -117,3 +117,10 @@
   - Simular fallos en posteos optimistas para hacer reversiones
   - Nueva api Use
   - Componente Suspense
+- Seccion 12 - Use Context
+  - Hook useContext
+  - Nueva API - use
+  - Persistencia de sesiones de usuario
+  - Rutas de la aplicación
+  - Rutas privadas y públicas
+  - Diseño condicional
