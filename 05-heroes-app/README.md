@@ -1,0 +1,15 @@
+- Seccion 13 - Single Page Aplication (SPA)
+  - ShadcnUI
+  - Tailwind
+  - Utilización de componentes
+  - Segmentación de código
+  - LazyLoad
+  - Estrutura de una paginación
+  - Y todo lo relacionado al diseño de la aplicación
+- Seccion 14 - Funcionalidad, cache y optimizaciones
+  - TanStack Query
+  - QueryParameters
+  - Caché
+  - Custom Hooks especializados
+  - Paginaciones por categorías
+  - Mucho más
