@@ -139,3 +139,5 @@
   - Custom Hooks especializados
   - Paginaciones por categorías
   - Mucho más
+- Seccion 15 - Context API - Búsquedas y favoritos
+  - Seguir el patrón de delegar la mayor cantidad de lógica a estados fuera de `useState` y `useEffect` para optimizar el rendimiento y, finalmente, preservar el estado al compartir el enlace de la aplicación.

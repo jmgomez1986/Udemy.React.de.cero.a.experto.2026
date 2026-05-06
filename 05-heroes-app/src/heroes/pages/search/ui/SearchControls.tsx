@@ -1,8 +1,52 @@
+import { useRef } from 'react';
+import { useSearchParams } from 'react-router';
 import { Filter, Grid, Plus, Search, SortAsc } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Slider } from '@/components/ui/slider';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  // AccordionTrigger,
+} from '@/components/ui/accordion';
 
 export const SearchControls = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const handleInputEvent = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      const value = inputRef.current?.value ?? '';
+      setQueryParams('name', value);
+      // setSearchParams((prev) => {
+      //   prev.set('name', value);
+      //   return prev;
+      // });
+    }
+  };
+
+  const activeAvancedSearch = searchParams.get('active-avanced-search') ?? '';
+  const selectedStrength = Number(searchParams.get('strength') ?? '0');
+
+  const setQueryParams = (name: string, value: string) => {
+    setSearchParams((prev) => {
+      prev.set(name, value);
+      return prev;
+    });
+  };
+
+  const toggleAdvancedFilters = () => {
+    if (activeAvancedSearch === 'advanced-filters') {
+      // setQueryParams('active-avanced-search', '');
+      setSearchParams((prev) => {
+        prev.delete('active-avanced-search');
+        return prev;
+      });
+      return;
+    }
+    setQueryParams('active-avanced-search', 'advanced-filters');
+  };
+
   return (
     <>
       {/* Search controls */}
@@ -11,14 +55,23 @@ export const SearchControls = () => {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
           <Input
+            ref={inputRef}
             placeholder="Search heroes, villains, powers, teams..."
             className="pl-12 h-12 text-lg bg-white"
+            onKeyDown={handleInputEvent}
+            defaultValue={searchParams.get('name') ?? ''}
           />
         </div>
 
         {/* Action buttons */}
         <div className="flex gap-2">
-          <Button variant="outline" className="h-12 bg-transparent">
+          <Button
+            variant={
+              activeAvancedSearch === 'advanced-filters' ? 'default' : 'outline'
+            }
+            className="h-12"
+            onClick={toggleAdvancedFilters}
+          >
             <Filter className="h-4 w-4 mr-2" />
             Filters
           </Button>
@@ -40,40 +93,46 @@ export const SearchControls = () => {
       </div>
 
       {/* Advanced Filters */}
-      <div className="bg-white rounded-lg p-6 mb-8 shadow-sm border">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold">Advanced Filters</h3>
-          <Button variant="ghost">Clear All</Button>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Team</label>
-            <div className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
-              All teams
-            </div>
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Category</label>
-            <div className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
-              All categories
-            </div>
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Universe</label>
-            <div className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
-              All universes
-            </div>
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Status</label>
-            <div className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
-              All statuses
-            </div>
-          </div>
-        </div>
-        <div className="mt-4">
-          <label className="text-sm font-medium">Minimum Strength: 0/10</label>
-          <div className="relative flex w-full touch-none select-none items-center mt-2">
+      <Accordion type="single" collapsible value={activeAvancedSearch}>
+        <AccordionItem value="advanced-filters">
+          {/* <AccordionTrigger>Advanced Filters</AccordionTrigger> */}
+          <AccordionContent>
+            <div className="bg-white rounded-lg p-6 mb-8 shadow-sm border">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-lg font-semibold">Advanced Filters</h3>
+                <Button variant="ghost">Clear All</Button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Team</label>
+                  <div className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
+                    All teams
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Category</label>
+                  <div className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
+                    All categories
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Universe</label>
+                  <div className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
+                    All universes
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Status</label>
+                  <div className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
+                    All statuses
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4">
+                <label className="text-sm font-medium">
+                  Minimum Strength: {selectedStrength}/10
+                </label>
+                {/* <div className="relative flex w-full touch-none select-none items-center mt-2">
             <div className="relative h-2 w-full grow overflow-hidden rounded-full bg-secondary">
               <div
                 className="absolute h-full bg-primary"
@@ -81,9 +140,20 @@ export const SearchControls = () => {
               />
             </div>
             <div className="block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors" />
-          </div>
-        </div>
-      </div>
+          </div> */}
+                <Slider
+                  defaultValue={[selectedStrength]}
+                  max={10}
+                  step={1}
+                  onValueChange={(value) =>
+                    setQueryParams('strength', value[0].toString())
+                  }
+                />
+              </div>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </>
   );
 };

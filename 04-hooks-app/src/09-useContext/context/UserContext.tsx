@@ -25,6 +25,7 @@ interface UserContextProps {
   logout: () => void;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const UserContext = createContext({} as UserContextProps);
 
 export const UserContextProvider = ({ children }: PropsWithChildren) => {
