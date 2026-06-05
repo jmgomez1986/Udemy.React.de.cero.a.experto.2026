@@ -141,3 +141,12 @@
   - Mucho más
 - Seccion 15 - Context API - Búsquedas y favoritos
   - Seguir el patrón de delegar la mayor cantidad de lógica a estados fuera de `useState` y `useEffect` para optimizar el rendimiento y, finalmente, preservar el estado al compartir el enlace de la aplicación.
+- Seccion 16 - Testing HeroesApp
+  - Pruebas sobre router
+  - Pruebas sobre ContextAPI
+  - Pruebas con query params
+  - Pruebas de redirecciones y componentes
+  - Mocks y espías
+  - Pruebas con TanStack
+  - Pruebas sobre custom hooks
+  - Mucho más

@@ -8,12 +8,12 @@ export const getHeroesByPageAction = async (
   limit: number = 6,
   category: string = 'all',
 ): Promise<HeroesResponse> => {
-  if (Number.isNaN(page)) {
+  if (Number.isNaN(Number(page))) {
     page = 1;
   }
 
-  if (Number.isNaN(limit)) {
-    page = 6;
+  if (Number.isNaN(Number(limit))) {
+    limit = 6;
   }
 
   const { data } = await heroApi.get<HeroesResponse>(`/`, {

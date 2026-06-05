@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SearchPage > should render searchPage with default values 1`] = `
+<div>
+  <div
+    data-testid="custom-jumbotron"
+  >
+    Custom Jumbotron
+  </div>
+  <div
+    data-testid="custom-breadcrumbs"
+  >
+    Custom Breadcrumbs
+  </div>
+  <div
+    data-testid="hero-stats"
+  >
+    Hero Stats
+  </div>
+  <div
+    data-testid="search-controls"
+  >
+    Search Controls
+  </div>
+  <div
+    data-testid="hero-grid"
+  />
+</div>
+`;
