@@ -150,3 +150,11 @@
   - Pruebas con TanStack
   - Pruebas sobre custom hooks
   - Mucho más
+- Seccion 18 - Panel administrativo de productos
+  - Rutas
+  - QueryParameters
+  - Persistencia sin estado
+  - Navegación
+  - Rutas
+  - Fuentes personalizadas (Google Fonts + Tailwind)
+  - Transformar código generado por AI a nuestro proyecto
