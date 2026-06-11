@@ -15,6 +15,7 @@ export const CustomHeader = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const query = searchParams.get('query') || '';
+
   const handleInputSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== 'Enter') return;
     const query = inputRef.current?.value;

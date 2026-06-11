@@ -44,7 +44,7 @@ export const appRouter = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to='/auth/login' />,
+        element: <Navigate to="/auth/login" />,
       },
       {
         path: 'login',
@@ -70,13 +70,13 @@ export const appRouter = createBrowserRouter([
         element: <AdminProductsPage />,
       },
       {
-        path: 'product/:id',
+        path: 'products/:id',
         element: <AdminProductPage />,
       },
     ],
   },
   {
     path: '*',
-    element: <Navigate to='/' />,
+    element: <Navigate to="/" />,
   },
 ]);

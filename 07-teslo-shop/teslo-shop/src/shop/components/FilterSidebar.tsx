@@ -3,22 +3,35 @@ import { Separator } from '@/components/ui/separator';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { useSearchParams } from 'react-router';
+import {
+  PRICES_RANGES,
+  type PricesRanges,
+} from '@/interfaces/pricesRanges.constant';
 
 export const FilterSidebar = () => {
+  const filterPricesRanges = PRICES_RANGES;
   // Obtener los parametros de la URL
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Obtengo un string y con el split cor comas, queda en un arreglo con cada talla como un elemento, y si no viene,
-  // es un arreglo vacion, o sea que siempre tenemos un arreglo
+  // Obtengo un string y con el split por comas, queda en un arreglo con cada talla como un elemento, y si no viene,
+  // es un arreglo vacio, o sea que siempre tenemos un arreglo
   const currentSizes = searchParams.get('sizes')?.split(',') || []; // xl,xs,l
   const currentPrice = searchParams.get('price') || 'any';
 
   const handleSizesChanged = (size: string) => {
+    console.log('Current Size: ', currentSizes);
     const newSizes = currentSizes.includes(size)
       ? currentSizes.filter((s) => s !== size)
       : [...currentSizes, size];
 
-    searchParams.set('sizes', newSizes.join(','));
+    if (newSizes.length > 1) {
+      searchParams.set('sizes', newSizes.join(','));
+    } else if (newSizes.length === 1) {
+      searchParams.set('sizes', newSizes.toLocaleString());
+    } else {
+      searchParams.delete('sizes');
+    }
+
     searchParams.set('page', '1');
     setSearchParams(searchParams);
   };
@@ -27,6 +40,24 @@ export const FilterSidebar = () => {
     searchParams.set('price', price);
     searchParams.set('page', '1');
     setSearchParams(searchParams);
+  };
+
+  const buildLabel = (priceRange: PricesRanges) => {
+    const { minPrice, maxPrice } = priceRange;
+
+    if (minPrice === undefined && maxPrice === undefined) {
+      return 'Cualquier precio';
+    }
+
+    if (maxPrice === undefined) {
+      return `$${minPrice}+`;
+    }
+
+    if (minPrice === undefined) {
+      return `Hasta $${maxPrice}`;
+    }
+
+    return `$${minPrice} - $${maxPrice}`;
   };
 
   const sizes = [
@@ -69,56 +100,21 @@ export const FilterSidebar = () => {
         <h4 className='font-medium'>Precio</h4>
         {/* El radiobutton checked se asigna en el padre y no en el item */}
         <RadioGroup defaultValue='' className='space-y-3' value={currentPrice}>
-          <div className='flex items-center space-x-2'>
-            <RadioGroupItem
-              value='any'
-              id='priceAny'
-              onClick={() => handlePriceChanged('any')}
-            />
-            <Label htmlFor='priceAny' className='text-sm cursor-pointer'>
-              Cualquier precio
-            </Label>
-          </div>
-          <div className='flex items-center space-x-2'>
-            <RadioGroupItem
-              value='0-50'
-              id='price1'
-              onClick={() => handlePriceChanged('0-50')}
-            />
-            <Label htmlFor='price1' className='text-sm cursor-pointer'>
-              $0 - $50
-            </Label>
-          </div>
-          <div className='flex items-center space-x-2'>
-            <RadioGroupItem
-              value='50-100'
-              id='price2'
-              onClick={() => handlePriceChanged('50-100')}
-            />
-            <Label htmlFor='price2' className='text-sm cursor-pointer'>
-              $50 - $100
-            </Label>
-          </div>
-          <div className='flex items-center space-x-2'>
-            <RadioGroupItem
-              value='100-200'
-              id='price3'
-              onClick={() => handlePriceChanged('100-200')}
-            />
-            <Label htmlFor='price3' className='text-sm cursor-pointer'>
-              $100 - $200
-            </Label>
-          </div>
-          <div className='flex items-center space-x-2'>
-            <RadioGroupItem
-              value='200+'
-              id='price4'
-              onClick={() => handlePriceChanged('200+')}
-            />
-            <Label htmlFor='price4' className='text-sm cursor-pointer'>
-              $200+
-            </Label>
-          </div>
+          {filterPricesRanges.map((priceRange) => (
+            <div className='flex items-center space-x-2' key={priceRange.id}>
+              <RadioGroupItem
+                value={priceRange.value}
+                id={priceRange.value}
+                onClick={() => handlePriceChanged(priceRange.value)}
+              />
+              <Label
+                htmlFor={priceRange.value}
+                className='text-sm cursor-pointer'
+              >
+                {buildLabel(priceRange)}
+              </Label>
+            </div>
+          ))}
         </RadioGroup>
       </div>
     </div>

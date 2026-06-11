@@ -158,3 +158,10 @@
   - Rutas
   - Fuentes personalizadas (Google Fonts + Tailwind)
   - Transformar código generado por AI a nuestro proyecto
+- Seccion 19 - Productos y Backend
+  - TanStack
+  - QueryParams
+  - QueryKeys
+  - Paginación
+  - Transformaciones de argumentos
+  - Mucho más

@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/button';
-import type { Product } from '@/temporalMocks/products.mock';
 import { Filter, Grid, List } from 'lucide-react';
 import { ProductCard } from './ProcuctCard';
 import { FilterSidebar } from './FilterSidebar';
 import { useSearchParams } from 'react-router';
 import { useState } from 'react';
+import type { Product } from '@/interfaces/product.interface';
 
 interface Props {
   products: Product[];
@@ -89,7 +89,13 @@ export const ProductsGrid = ({ products }: Props) => {
           )}
 
           {/* Products Grid */}
-          <div className='flex-1'>
+          <div
+            className={
+              products.length === 0
+                ? 'flex justify-center mt-8 w-full'
+                : 'flex-1'
+            }
+          >
             <div
               className={
                 viewMode === 'grid'
@@ -97,16 +103,20 @@ export const ProductsGrid = ({ products }: Props) => {
                   : 'space-y-4'
               }
             >
-              {products.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  id={product.id}
-                  name={product.name}
-                  price={product.price}
-                  image={product.image}
-                  category={product.category}
-                />
-              ))}
+              {products.length > 0 ? (
+                products.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    name={product.title}
+                    price={product.price}
+                    image={product.images[0]}
+                    category={product.gender}
+                    sizes={product.sizes}
+                  />
+                ))
+              ) : (
+                <h1>No Results</h1>
+              )}
             </div>
           </div>
         </div>
