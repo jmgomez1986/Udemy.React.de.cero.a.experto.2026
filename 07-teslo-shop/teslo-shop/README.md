@@ -21,3 +21,13 @@
   - Paginación
   - Transformaciones de argumentos
   - Mucho más
+- Seccion 20 - Auth
+  - TanStack con Zustand
+  - Zustand como gestor de estado
+  - Generalidades de los JWTs
+  - Mantener la sesión del usuario
+  - Autenticación
+  - Autorización
+  - Protección de rutas
+  - Autorización de rutas
+  - Y más

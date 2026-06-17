@@ -1,16 +1,44 @@
+import { useState } from 'react';
+import { toast } from 'sonner';
+import { Link, useNavigate } from 'react-router';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { CustomLogo } from '@/components/custom/CustomLogo';
-import { Link } from 'react-router';
+import { useAuthStore } from '@/auth/store/auth.store';
 
 export const RegisterPage = () => {
+  const navigate = useNavigate();
+  const { register } = useAuthStore();
+  const [isPosting, setIsPosting] = useState(false);
+  const handleRegister = async (
+    event: React.SyntheticEvent<HTMLFormElement>,
+  ) => {
+    event.preventDefault();
+    setIsPosting(true);
+
+    // Para que los campos sean parte del formulario, deben tener el atributo "name"
+    const formData = new FormData(event.target as HTMLFormElement);
+    const fullName = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+
+    const isValid = await register(email, password, fullName);
+    if (isValid) {
+      console.log('Redireccionando al Home Page!!!');
+      navigate('/');
+    } else {
+      toast.error('Correo y/o contraseña inválidos');
+    }
+    setIsPosting(false);
+  };
+
   return (
     <div className={'flex flex-col gap-6'}>
       <Card className='p-0 overflow-hidden'>
         <CardContent className='grid p-0 md:grid-cols-2'>
-          <form className='p-6 md:p-8'>
+          <form className='p-6 md:p-8' onSubmit={handleRegister}>
             <div className='flex flex-col gap-6'>
               <div className='flex flex-col items-center text-center'>
                 <CustomLogo />
@@ -20,7 +48,13 @@ export const RegisterPage = () => {
               </div>
               <div className='grid gap-2'>
                 <Label htmlFor='name'>Name</Label>
-                <Input id='name' type='name' placeholder='Name' required />
+                <Input
+                  id='name'
+                  type='name'
+                  placeholder='Name'
+                  required
+                  name='name'
+                />
               </div>
 
               <div className='grid gap-2'>
@@ -30,6 +64,7 @@ export const RegisterPage = () => {
                   type='email'
                   placeholder='m@example.com'
                   required
+                  name='email'
                 />
               </div>
               <div className='grid gap-2'>
@@ -41,9 +76,10 @@ export const RegisterPage = () => {
                   type='password'
                   required
                   placeholder='Password'
+                  name='password'
                 />
               </div>
-              <Button type='submit' className='w-full'>
+              <Button type='submit' className='w-full' disabled={isPosting}>
                 Create
               </Button>
               <div className='relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border'>
