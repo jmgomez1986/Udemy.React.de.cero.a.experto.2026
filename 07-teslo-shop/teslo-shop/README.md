@@ -31,3 +31,14 @@
   - Protección de rutas
   - Autorización de rutas
   - Y más
+- Seccion 21 -
+  - Paginación, filtros y tabla de productos
+  - Formularios
+  - useForm
+  - Validaciones como
+    - Requerido
+    - Min y Max
+    - Contra expresiones regulares
+  - TanStack mutation
+  - Invalidar cache
+  - Mucho más

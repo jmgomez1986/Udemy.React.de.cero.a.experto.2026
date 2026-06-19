@@ -34,6 +34,6 @@ export const getProductsAction = async (
     ),
   }));
 
-  console.log(productsWithImageUrl);
+  // console.log(productsWithImageUrl);
   return { ...data, products: productsWithImageUrl };
 };

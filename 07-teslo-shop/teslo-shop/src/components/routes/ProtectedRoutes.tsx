@@ -25,7 +25,7 @@ export const NotAuthenticatedRoute = ({ children }: PropsWithChildren) => {
 export const AdminRoute = ({ children }: PropsWithChildren) => {
   const { authStatus, isAdmin } = useAuthStore();
 
-  console.log(' Is Admin: ', isAdmin);
+  // console.log(' Is Admin: ', isAdmin);
 
   if (authStatus === 'checking') return null;
 
